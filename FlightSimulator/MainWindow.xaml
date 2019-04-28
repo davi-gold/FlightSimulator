@@ -1,0 +1,41 @@
+﻿<Window x:Class="FlightSimulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlightSimulator"
+        mc:Ignorable="d"
+        xmlns:views="clr-namespace:FlightSimulator.Views"
+        
+        Title="MainWindow" Height="570" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="lft" Grid.Column="0" Margin="0,0,36.667,-0.333">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="7*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button VerticalAlignment="Center" Padding="3" Content="Disconnect" Margin="3" Command="{Binding disconnect}"/>
+                <Button VerticalAlignment="Center" Padding="3" Content="Connect" Margin="3" Command="{Binding connect}"/>
+                <Button VerticalAlignment="Center" Padding="3" Content="Settings" Margin="3" Command="{Binding getWindow}" />
+            </StackPanel>
+        </Grid>
+        <Viewbox Grid.Column="1">
+            <TabControl Height="569" Width="539">
+                <TabItem Header="Manual">
+                    <views:myJoystick Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.506,0.429" Margin="3,1,-18.333,2.333" Loaded="Joystick_Loaded" Grid.RowSpan="2" Grid.ColumnSpan="4"/>
+                </TabItem>
+                <TabItem Header="Auto Pilot">
+                    <views:AutoPilot Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.506,0.429" Margin="3.333,0.667,1.333,-0.333" Grid.RowSpan="2" Grid.ColumnSpan="4"/>
+                </TabItem>
+            </TabControl>
+        </Viewbox>
+        <Viewbox>
+            <views:FlightBoard Grid.Column="0" Margin="0,0,100,10"/>
+        </Viewbox>
+    </Grid>
+</Window>
